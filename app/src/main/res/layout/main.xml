@@ -24,7 +24,7 @@
 
             <EditText
                 android:id="@+id/editTextUsername"
-                android:hint="User Name"
+                android:hint="@string/user_name_hint"
                 android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,14 +36,14 @@
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/password_hint"
                 android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/buttonSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="@string/login"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp" />
 
@@ -53,7 +53,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create an account"
+        android:text="@string/create_an_account"
         android:textSize="20sp"
         android:gravity="center_horizontal"
         android:onClick="signUp"
