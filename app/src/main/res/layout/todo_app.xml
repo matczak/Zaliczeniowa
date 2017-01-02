@@ -11,7 +11,7 @@
         android:titleTextColor="#ffffff"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-    <pl.matczakonline.zaliczeniowa.FloatingActionButton
+    <pl.matczakonline.zaliczeniowa.floatingbutton.FloatingActionButton
         android:id="@+id/addButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -31,6 +31,6 @@
             android:layout_gravity="center"
             android:duplicateParentState="true"/>
 
-    </pl.matczakonline.zaliczeniowa.FloatingActionButton>
+    </pl.matczakonline.zaliczeniowa.floatingbutton.FloatingActionButton>
 
 </RelativeLayout>

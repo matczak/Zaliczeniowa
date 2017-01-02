@@ -1,4 +1,4 @@
-package pl.matczakonline.zaliczeniowa;
+package pl.matczakonline.zaliczeniowa.common.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import pl.matczakonline.zaliczeniowa.common.helpers.LoginDataBaseAdapter;
+import pl.matczakonline.zaliczeniowa.R;
 
 public class SignUPActivity extends Activity {
     EditText editTextUserName, editTextPassword, editTextConfirmPassword;

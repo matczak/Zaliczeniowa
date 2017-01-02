@@ -1,4 +1,4 @@
-package pl.matczakonline.zaliczeniowa;
+package pl.matczakonline.zaliczeniowa.floatingbutton;
 
 import android.content.Context;
 import android.graphics.Outline;

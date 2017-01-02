@@ -1,4 +1,4 @@
-package pl.matczakonline.zaliczeniowa;
+package pl.matczakonline.zaliczeniowa.common.helpers;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -1,12 +1,14 @@
-package pl.matczakonline.zaliczeniowa;
+package pl.matczakonline.zaliczeniowa.common.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
+
+import pl.matczakonline.zaliczeniowa.R;
+import pl.matczakonline.zaliczeniowa.floatingbutton.FloatingActionButton;
 
 /**
  * Created by michn on 29.12.2016.
@@ -27,7 +29,7 @@ public class TodoAppActivity extends Activity {
         FloatingActionButton addButton = (FloatingActionButton) findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                test();
+                addTask();
             }
         });
     }
@@ -38,8 +40,9 @@ public class TodoAppActivity extends Activity {
         mActionBarToolbar.setTitleTextColor(Color.WHITE);
     }
 
-    public static void test() {
-        Log.d("tag", "here we are from todo");
+    public void addTask() {
+        Intent intentAddTask = new Intent(getApplicationContext(), AddTaskActivity.class);
+        startActivity(intentAddTask);
     }
 }
 
