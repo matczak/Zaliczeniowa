@@ -1,6 +1,7 @@
 package pl.matczakonline.zaliczeniowa.common.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,14 +48,19 @@ public class SignUPActivity extends Activity {
                 // check if both password matches
                 if (!password.equals(confirmPassword)) {
                     Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
-                    return;
                 } else {
                     // Save the Data in Database
                     loginDataBaseAdapter.insertEntry(userName, password);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+                    todoApp();
                 }
             }
         });
+    }
+    
+    private void todoApp() {
+        Intent intentTodoApp = new Intent(getApplicationContext(), TodoAppActivity.class);
+        startActivity(intentTodoApp);
     }
 
     @Override

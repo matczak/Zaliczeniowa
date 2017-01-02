@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".common.activities.SignUPActivity"></activity>
-        <activity android:name=".common.activities.TodoAppActivity" android:label="ToDo App"></activity>
+        <activity android:name=".common.activities.SignUPActivity" />
+        <activity android:name=".common.activities.TodoAppActivity" android:label="ToDo App" />
+        <activity android:name=".common.activities.AddTaskActivity" />
     </application>
 
 </manifest>
