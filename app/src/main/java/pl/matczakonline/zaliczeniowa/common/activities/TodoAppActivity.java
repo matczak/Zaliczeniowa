@@ -5,10 +5,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
+
+import java.util.List;
+
 import pl.matczakonline.zaliczeniowa.R;
+import pl.matczakonline.zaliczeniowa.common.db.DatabaseHelper;
+import pl.matczakonline.zaliczeniowa.common.db.Todo;
 import pl.matczakonline.zaliczeniowa.floatingbutton.FloatingActionButton;
 
 /**
@@ -16,6 +24,8 @@ import pl.matczakonline.zaliczeniowa.floatingbutton.FloatingActionButton;
  */
 
 public class TodoAppActivity extends Activity {
+    DatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +52,18 @@ public class TodoAppActivity extends Activity {
     }
 
     public void addTask() {
-        Intent intentAddTask = new Intent(getApplicationContext(), AddTaskActivity.class);
-        startActivity(intentAddTask);
+        dbHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+        RuntimeExceptionDao<Todo, Integer> todoDao = dbHelper.getTodoRuntimeExceptionDao();
+
+
+        todoDao.create(new Todo("title 1", "desc 1", 1));
+        todoDao.create(new Todo("title 2", "desc 2", 1));
+        todoDao.create(new Todo("title 3", "desc 3", 3));
+
+        List<Todo> todos = todoDao.queryForAll();
+        Log.d("demo", todos.toString());
+//        Intent intentAddTask = new Intent(getApplicationContext(), AddTaskActivity.class);
+//        startActivity(intentAddTask);
     }
 }
 
