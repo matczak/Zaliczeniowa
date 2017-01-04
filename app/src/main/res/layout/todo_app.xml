@@ -11,10 +11,11 @@
         android:titleTextColor="#ffffff"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ListView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text"/>
+        android:id="@+id/list">
+    </ListView>
 
     <pl.matczakonline.zaliczeniowa.floatingbutton.FloatingActionButton
         android:id="@+id/addButton"

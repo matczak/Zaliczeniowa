@@ -1,7 +1,9 @@
 package pl.matczakonline.zaliczeniowa.common.activities;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,17 +30,31 @@ public class AddTaskActivity extends Activity implements AdapterView.OnItemSelec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task);
         initSpinner();
-        initAddButton();
+        initButtons();
+        initToolbar();
     }
 
-    private void initAddButton() {
+    private void initButtons() {
         Button addButton = (Button) findViewById(R.id.addTaksBtn);
+        Button cancelButton = (Button) findViewById(R.id.cancelButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addTaskToDb();
             }
         });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    private void initToolbar() {
+        Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mActionBarToolbar.setTitle("Matczak");
+        mActionBarToolbar.setTitleTextColor(Color.WHITE);
     }
 
     private void addTaskToDb() {

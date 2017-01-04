@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -17,6 +19,7 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import pl.matczakonline.zaliczeniowa.CustomListAdapter.CustomListAdapter;
 import pl.matczakonline.zaliczeniowa.R;
 import pl.matczakonline.zaliczeniowa.common.db.DatabaseHelper;
 import pl.matczakonline.zaliczeniowa.common.db.Todo;
@@ -28,6 +31,7 @@ import pl.matczakonline.zaliczeniowa.floatingbutton.FloatingActionButton;
 
 public class TodoAppActivity extends Activity {
     DatabaseHelper dbHelper;
+    ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class TodoAppActivity extends Activity {
         this.setContentView(R.layout.todo_app);
         this.initToolbar();
         this.initAddButton();
+        list = (ListView) findViewById(R.id.list);
     }
 
     private void initAddButton() {
@@ -48,7 +53,7 @@ public class TodoAppActivity extends Activity {
 
     private void initToolbar() {
         Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mActionBarToolbar.setTitle("Testy");
+        mActionBarToolbar.setTitle("Matczak");
         mActionBarToolbar.setTitleTextColor(Color.WHITE);
     }
 
@@ -60,8 +65,13 @@ public class TodoAppActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("tag","resume");
-        //TODO get todos to list
+
+        DatabaseHelper dbHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+        RuntimeExceptionDao<Todo, Integer> todoDao = dbHelper.getTodoRuntimeExceptionDao();
+        List<Todo> todos = todoDao.queryForAll();
+
+        CustomListAdapter aa = new CustomListAdapter(getApplicationContext(), R.layout.list_view_0, todos);
+        list.setAdapter(aa);
     }
 }
 

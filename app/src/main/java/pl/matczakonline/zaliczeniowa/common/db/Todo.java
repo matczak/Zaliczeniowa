@@ -24,6 +24,10 @@ public class Todo {
 
     }
 
+    public int getPriority() {
+        return priority;
+    }
+
     public Todo(String title, String description, int priority) {
         super();
         this.title = title;
@@ -33,6 +37,6 @@ public class Todo {
 
     @Override
     public String toString() {
-        return "Todo: [id=" + id + ", title=" + title + ", description=" + description + ", priority=" + priority;
+        return title;
     }
 }
