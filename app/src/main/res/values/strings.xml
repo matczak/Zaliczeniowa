@@ -6,4 +6,13 @@
     <string name="login">Login</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="create_account_button">Create Account</string>
+    <string name="add_task_button">Add Task</string>
+    <string name="title_hint">Title</string>
+    <string name="description_hint">Description</string>
+    <string name="priority_hint">Priority</string>
+    <string-array name="priority_array">
+        <item>High</item>
+        <item>Normal</item>
+        <item>Low</item>
+    </string-array>
 </resources>

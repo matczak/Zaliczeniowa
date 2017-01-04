@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -32,8 +35,6 @@ public class TodoAppActivity extends Activity {
         this.setContentView(R.layout.todo_app);
         this.initToolbar();
         this.initAddButton();
-
-
     }
 
     private void initAddButton() {
@@ -52,18 +53,15 @@ public class TodoAppActivity extends Activity {
     }
 
     public void addTask() {
-        dbHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
-        RuntimeExceptionDao<Todo, Integer> todoDao = dbHelper.getTodoRuntimeExceptionDao();
+        Intent intentAddTask = new Intent(getApplicationContext(), AddTaskActivity.class);
+        startActivity(intentAddTask);
+    }
 
-
-        todoDao.create(new Todo("title 1", "desc 1", 1));
-        todoDao.create(new Todo("title 2", "desc 2", 1));
-        todoDao.create(new Todo("title 3", "desc 3", 3));
-
-        List<Todo> todos = todoDao.queryForAll();
-        Log.d("demo", todos.toString());
-//        Intent intentAddTask = new Intent(getApplicationContext(), AddTaskActivity.class);
-//        startActivity(intentAddTask);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("tag","resume");
+        //TODO get todos to list
     }
 }
 

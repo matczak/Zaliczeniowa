@@ -11,6 +11,11 @@
         android:titleTextColor="#ffffff"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text"/>
+
     <pl.matczakonline.zaliczeniowa.floatingbutton.FloatingActionButton
         android:id="@+id/addButton"
         android:layout_width="56dp"
