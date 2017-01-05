@@ -37,29 +37,27 @@ public class CustomListAdapter extends ArrayAdapter<Todo> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Todo todo = todos.get(position);
         ViewHolder holder = null;
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-        if (convertView == null) {
-            holder = new ViewHolder();
-            switch (todo.getPriority()) {
-                case 0:
-                    convertView = inflater.inflate(R.layout.list_view_0, parent, false);
-                    holder.textView = (TextView)convertView.findViewById(R.id.text);
-                    break;
-                case 1:
-                    convertView = inflater.inflate(R.layout.list_view_1, parent, false);
-                    holder.textView = (TextView)convertView.findViewById(R.id.text);
-                    break;
-                case 2:
-                default:
-                    convertView = inflater.inflate(R.layout.list_view_2, parent, false);
-                    holder.textView = (TextView)convertView.findViewById(R.id.text);
-                    break;
-            }
-            convertView.setTag(holder);
-        }else {
-            holder = (ViewHolder)convertView.getTag();
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        holder = new ViewHolder();
+
+        switch (todo.getPriority()) {
+            case 0:
+                convertView = inflater.inflate(R.layout.list_view_0, parent, false);
+                holder.textView = (TextView) convertView.findViewById(R.id.text);
+                break;
+            case 1:
+                convertView = inflater.inflate(R.layout.list_view_1, parent, false);
+                holder.textView = (TextView) convertView.findViewById(R.id.text);
+                break;
+            case 2:
+            default:
+                convertView = inflater.inflate(R.layout.list_view_2, parent, false);
+                holder.textView = (TextView) convertView.findViewById(R.id.text);
+                break;
         }
 
+        convertView.setTag(holder);
         holder.textView.setText(todo.toString());
 
         return convertView;
