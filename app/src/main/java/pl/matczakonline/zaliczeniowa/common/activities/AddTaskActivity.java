@@ -1,6 +1,7 @@
 package pl.matczakonline.zaliczeniowa.common.activities;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -68,7 +69,9 @@ public class AddTaskActivity extends Activity implements AdapterView.OnItemSelec
         if (title.isEmpty() || description.isEmpty()) {
             Toast.makeText(AddTaskActivity.this, "Title and description can not be empty!", Toast.LENGTH_LONG).show();
         } else {
-            todoDao.create(new Todo(title, description, selectedPriority));
+            SharedPreferences settings = getSharedPreferences("User", 0);
+            int userID = settings.getInt("userID", 0);
+            todoDao.create(new Todo(userID, title, description, selectedPriority));
             finish();
         }
     }

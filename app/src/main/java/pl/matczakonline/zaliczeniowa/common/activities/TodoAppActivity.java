@@ -2,20 +2,16 @@ package pl.matczakonline.zaliczeniowa.common.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -30,7 +26,6 @@ import pl.matczakonline.zaliczeniowa.floatingbutton.FloatingActionButton;
  */
 
 public class TodoAppActivity extends Activity {
-    DatabaseHelper dbHelper;
     ListView list;
 
     @Override
@@ -66,9 +61,13 @@ public class TodoAppActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        SharedPreferences settings = getSharedPreferences("User", 0);
+        int userID = settings.getInt("userID", 0);
+        Log.d("userID", Integer.toString(userID));
+
         DatabaseHelper dbHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
         RuntimeExceptionDao<Todo, Integer> todoDao = dbHelper.getTodoRuntimeExceptionDao();
-        List<Todo> todos = todoDao.queryForAll();
+        List<Todo> todos = todoDao.queryForEq("userID", userID);
 
         CustomListAdapter aa = new CustomListAdapter(getApplicationContext(), R.layout.list_view_0, todos);
         list.setAdapter(aa);
