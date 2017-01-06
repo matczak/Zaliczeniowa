@@ -57,20 +57,27 @@ public class TodoAppActivity extends Activity {
         startActivity(intentAddTask);
     }
 
+    private void showList() {
+        List<Todo> todos = getTodos();
+        CustomListAdapter aa = new CustomListAdapter(getApplicationContext(), R.layout.list_view_0, todos);
+        list.setAdapter(aa);
+    }
+
+    private List<Todo> getTodos() {
+        DatabaseHelper dbHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+        RuntimeExceptionDao<Todo, Integer> todoDao = dbHelper.getTodoRuntimeExceptionDao();
+        return todoDao.queryForEq("userID", getUserId());
+    }
+
+    private int getUserId() {
+        SharedPreferences settings = getSharedPreferences("User", 0);
+        return settings.getInt("userID", 0);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-
-        SharedPreferences settings = getSharedPreferences("User", 0);
-        int userID = settings.getInt("userID", 0);
-        Log.d("userID", Integer.toString(userID));
-
-        DatabaseHelper dbHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
-        RuntimeExceptionDao<Todo, Integer> todoDao = dbHelper.getTodoRuntimeExceptionDao();
-        List<Todo> todos = todoDao.queryForEq("userID", userID);
-
-        CustomListAdapter aa = new CustomListAdapter(getApplicationContext(), R.layout.list_view_0, todos);
-        list.setAdapter(aa);
+        showList();
     }
 }
 

@@ -27,7 +27,8 @@
                 android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:freezesText="false"
+                android:isScrollContainer="false">
                 <requestFocus />
             </EditText>
 
@@ -36,7 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password_hint"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:singleLine="true" />
 
             <Button
                 android:id="@+id/buttonSignIn"

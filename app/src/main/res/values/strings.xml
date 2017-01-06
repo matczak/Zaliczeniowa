@@ -11,6 +11,7 @@
     <string name="description_hint">Description</string>
     <string name="priority_hint">Priority</string>
     <string name="cancel_button">Cancel</string>
+    <string name="vertical_ellipsis">&#8942;</string>
     <string-array name="priority_array">
         <item>High</item>
         <item>Normal</item>
