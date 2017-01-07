@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -68,7 +67,7 @@ public class TodoAppActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
                 Todo todo = todos.get(position);
-                CustomDialog dialog = new CustomDialog(TodoAppActivity.this, todo.getTitle(), todo.getDescription(), todo.getPriority());
+                CustomDialog dialog = new CustomDialog(TodoAppActivity.this, todo);
                 dialog.show();
             }
         });

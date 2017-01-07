@@ -20,6 +20,7 @@
         <activity android:name=".common.activities.SignUPActivity" />
         <activity android:name=".common.activities.TodoAppActivity" android:label="ToDo App" />
         <activity android:name=".common.activities.AddTaskActivity" />
+        <activity android:name=".common.activities.EditTaskActivity" />
     </application>
 
 </manifest>

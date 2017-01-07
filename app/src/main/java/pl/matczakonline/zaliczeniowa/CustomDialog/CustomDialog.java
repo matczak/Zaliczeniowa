@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import pl.matczakonline.zaliczeniowa.R;
-import pl.matczakonline.zaliczeniowa.common.activities.AddTaskActivity;
 import pl.matczakonline.zaliczeniowa.common.activities.EditTaskActivity;
+import pl.matczakonline.zaliczeniowa.common.db.Todo;
 
 /**
  * Created by michnik on 07.01.2017.
@@ -19,12 +19,16 @@ import pl.matczakonline.zaliczeniowa.common.activities.EditTaskActivity;
 public class CustomDialog extends Dialog {
 
     private String[] priorities = new String[]{"High", "Normal", "Low"};
+    private Todo todo;
+    private Context dialogContext;
 
-    public CustomDialog(Context context, String title, String description, int priority) {
+    public CustomDialog(Context context, Todo todo) {
         super(context);
         setContentView(R.layout.edit_task_modal);
-        setTextViewBoxes(title, description, priority);
+        setTextViewBoxes(todo);
         setButtonsListeners();
+        this.todo = todo;
+        this.dialogContext = context;
     }
 
     private void setButtonsListeners() {
@@ -42,19 +46,21 @@ public class CustomDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 Intent intentEditTask = new Intent(getContext(), EditTaskActivity.class);
+                intentEditTask.putExtra("TodoID", todo.getId());
                 getContext().startActivity(intentEditTask);
+                dismiss();
             }
         });
     }
 
-    private void setTextViewBoxes(String title, String description, int priority) {
+    private void setTextViewBoxes(Todo todo) {
         TextView _title = (TextView) findViewById(R.id.title);
         TextView _description = (TextView) findViewById(R.id.description);
         TextView _priority = (TextView) findViewById(R.id.priority);
 
-        _title.setText(title);
-        _description.setText(description);
-        _priority.setText(priorities[priority]);
+        _title.setText(todo.getTitle());
+        _description.setText(todo.getDescription());
+        _priority.setText(priorities[todo.getPriority()]);
     }
 
     @Override

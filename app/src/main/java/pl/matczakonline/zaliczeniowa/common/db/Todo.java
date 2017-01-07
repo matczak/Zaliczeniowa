@@ -45,8 +45,24 @@ public class Todo {
         return title;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     @Override
