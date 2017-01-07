@@ -12,6 +12,7 @@
     <string name="priority_hint">Priority</string>
     <string name="cancel_button">Cancel</string>
     <string name="vertical_ellipsis">&#8942;</string>
+    <string name="edit_task_button">Edit</string>
     <string-array name="priority_array">
         <item>High</item>
         <item>Normal</item>

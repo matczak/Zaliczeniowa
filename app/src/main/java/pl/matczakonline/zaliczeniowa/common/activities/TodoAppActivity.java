@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -15,6 +16,7 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import java.util.List;
 
+import pl.matczakonline.zaliczeniowa.CustomDialog.CustomDialog;
 import pl.matczakonline.zaliczeniowa.CustomListAdapter.CustomListAdapter;
 import pl.matczakonline.zaliczeniowa.R;
 import pl.matczakonline.zaliczeniowa.common.db.DatabaseHelper;
@@ -58,9 +60,18 @@ public class TodoAppActivity extends Activity {
     }
 
     private void showList() {
-        List<Todo> todos = getTodos();
+        final List<Todo> todos = getTodos();
         CustomListAdapter aa = new CustomListAdapter(getApplicationContext(), R.layout.list_view_0, todos);
         list.setAdapter(aa);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
+                Todo todo = todos.get(position);
+                CustomDialog dialog = new CustomDialog(TodoAppActivity.this, todo.getTitle(), todo.getDescription(), todo.getPriority());
+                dialog.show();
+            }
+        });
     }
 
     private List<Todo> getTodos() {
