@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -57,8 +58,23 @@ public class CustomListAdapter extends ArrayAdapter<Todo> {
         convertView.setTag(holder);
         holder.textView.setText(todo.toString());
 
+        addClickEventToBtn(position, convertView);
+
         return convertView;
     }
+
+    private void addClickEventToBtn(final int position, View convertView) {
+        Button deleteBtn = (Button) convertView.findViewById(R.id.deleteButton);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                todos.remove(position);
+                //TODO: remove from database
+                notifyDataSetChanged();
+            }
+        });
+    }
+
 
     public static class ViewHolder {
         public TextView textView;
