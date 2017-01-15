@@ -9,9 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
+
 import java.util.List;
 
 import pl.matczakonline.zaliczeniowa.R;
+import pl.matczakonline.zaliczeniowa.common.db.DatabaseHelper;
 import pl.matczakonline.zaliczeniowa.common.db.Todo;
 
 /**
@@ -22,12 +26,16 @@ public class CustomListAdapter extends ArrayAdapter<Todo> {
 
     private final List<Todo> todos;
     private final Context context;
+    RuntimeExceptionDao<Todo, Integer> todoDao;
 
 
     public CustomListAdapter(Context context, int resource, List<Todo> items) {
         super(context, resource, items);
         this.todos = items;
         this.context = context;
+
+        DatabaseHelper dbHelper = OpenHelperManager.getHelper(context, DatabaseHelper.class);
+        todoDao = dbHelper.getTodoRuntimeExceptionDao();
     }
 
     @NonNull
@@ -68,8 +76,10 @@ public class CustomListAdapter extends ArrayAdapter<Todo> {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Todo todo = todos.get(position);
                 todos.remove(position);
                 //TODO: remove from database
+                todoDao.delete(todo);
                 notifyDataSetChanged();
             }
         });
