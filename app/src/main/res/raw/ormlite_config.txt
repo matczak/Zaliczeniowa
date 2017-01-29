@@ -1,0 +1,26 @@
+#
+# generated on 2017/01/05 07:41:19
+#
+# --table-start--
+dataClass=pl.matczakonline.zaliczeniowa.common.db.Todo
+tableName=todo
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=title
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=priority
+# --field-end--
+# --field-start--
+fieldName=userID
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
